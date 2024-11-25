@@ -49,4 +49,7 @@ opt.spelllang = { "en_us", "ru" } -- Словари рус eng
 opt.spell = true
 
 -- под винду
-vim.g.terminal_emulator='powershell'
+
+if vim.fn.has("win32") == 1 or vim.fn.has("win64") == 1 then
+  opt.shell = 'powershell.exe'
+end

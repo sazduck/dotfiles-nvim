@@ -10,9 +10,9 @@ return {
     priority = 1000,
     config = function() 
         vim.cmd.colorscheme "catppuccin-mocha"
-        -- set_trans_bg_to('Normal')
-        -- set_trans_bg_to('NormalFloat')
-        -- set_trans_bg_to('FloatBorder')
-        -- set_trans_bg_to('Pmenu')
+        set_trans_bg_to('Normal')
+        set_trans_bg_to('NormalFloat')
+        set_trans_bg_to('FloatBorder')
+        set_trans_bg_to('Pmenu')
     end
 }
