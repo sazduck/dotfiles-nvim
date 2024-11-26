@@ -37,8 +37,6 @@ opt.mouse = 'a'
 -- backspace
 opt.backspace = "indent,eol,start" -- allow backspace on indent, end of line or insert mode start position
 
--- clipboard
--- opt.clipboard:append("unnamedplus") -- use system clipboard as default register
 
 -- split windows
 opt.splitright = true -- split vertical window to the right
@@ -51,5 +49,8 @@ opt.spell = true
 -- под винду
 
 if vim.fn.has("win32") == 1 or vim.fn.has("win64") == 1 then
+  -- shell
   opt.shell = 'powershell.exe'
+  -- clipboard
+  opt.clipboard:append("unnamedplus") -- use system clipboard as default register
 end
