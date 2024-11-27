@@ -50,7 +50,7 @@ opt.spell = true
 
 if vim.fn.has("win32") == 1 or vim.fn.has("win64") == 1 then
   -- shell
-  opt.shell = 'powershell.exe'
+  opt.shell = 'powershell'
   -- clipboard
   opt.clipboard:append("unnamedplus") -- use system clipboard as default register
 end
