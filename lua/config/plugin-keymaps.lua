@@ -16,3 +16,7 @@ if pcall(require, 'lspconfig') then
   set("n", "gd", vim.lsp.buf.definition, {})
   set({"n", "v"}, "<leader>ca", vim.lsp.buf.code_action, {})
 end
+
+if pcall(require, "null-ls") then
+  set("n", "<leader>cf", vim.lsp.buf.format, {})
+end

@@ -1,27 +1,39 @@
 return {
   {
     "williamboman/mason.nvim",
-    opts = {
-      -- ui = {
-      --   border = "rounded",
-      -- },
+    dependencies = {
+      "WhoIsSethDaniel/mason-tool-installer.nvim"
     },
+    config = function()
+      require("mason").setup()
+      require("mason-tool-installer").setup({
+        ensure_installed = {
+          "prettier",     -- prettier formatter
+          "stylua",       -- lua formatter
+          "eslint_d",     -- js linter
+        },
+      })
+    end,
   },
   {
     "williamboman/mason-lspconfig.nvim",
     config = function()
       require("mason-lspconfig").setup({
-        ensure_installed = { "lua_ls", "ts_ls" }
+        ensure_installed = {
+          "lua_ls",
+          "ts_ls",
+          "gopls",
+        },
       })
-    end
+    end,
   },
   {
     "neovim/nvim-lspconfig",
     config = function()
       local lspconfig = require("lspconfig")
-      lspconfig.ts_ls.setup({})
       lspconfig.lua_ls.setup({})
-    end
-  }
-
+      lspconfig.ts_ls.setup({})
+      lspconfig.gopls.setup({})
+    end,
+  },
 }
