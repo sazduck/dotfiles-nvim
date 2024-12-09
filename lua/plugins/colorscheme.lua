@@ -2,11 +2,11 @@ return {
   "catppuccin/nvim",
   name = "catppuccin",
   priority = 1000,
-  config = function() 
+  config = function()
 
     require("catppuccin").setup({
 
-      transparent_background = true,
+      -- transparent_background = true,
 
       custom_highlights = function(colors)
         return {
@@ -21,5 +21,36 @@ return {
     vim.cmd.colorscheme "catppuccin-mocha"
 
   end
-    
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
