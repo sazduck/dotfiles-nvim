@@ -10,6 +10,7 @@ return {
             CursorLineNr = { fg = colors.mauve },
             LineNr =       { fg = colors.overlay0 },
             TabLineSel =   { bg = colors.pink },
+            MsgSeparator = { bg = colors.mantle },
           }
         end,
         transparent_background = true,

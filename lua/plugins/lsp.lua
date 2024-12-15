@@ -1,12 +1,11 @@
+
 return {
   {
     "williamboman/mason.nvim",
     opts = {
+      ui = { border = "rounded", },
       PATH = "prepend",
-      ui = {
-        border = "rounded",
-      },
-    },
+    }
   },
   {
     "williamboman/mason-lspconfig.nvim",
