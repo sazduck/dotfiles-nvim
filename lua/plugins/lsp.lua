@@ -2,6 +2,7 @@ return {
   {
     "williamboman/mason.nvim",
     opts = {
+      PATH = "prepend",
       ui = {
         border = "rounded",
       },
@@ -23,23 +24,26 @@ return {
     config = function()
       local lspconfig = require("lspconfig")
 
-      local _border = "rounded"
+      local border = "rounded"
 
       vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
-        border = _border,
+        border = border,
       })
 
       vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, {
-        border = _border,
+        border = border,
       })
 
       vim.diagnostic.config({
-        float = { border = _border },
+        float = { border = border },
       })
-      lspconfig.lua_ls.setup({})
-      lspconfig.eslint.setup({})
-      lspconfig.ts_ls.setup({})
-      lspconfig.gopls.setup({})
+
+      local capabilities = require("cmp_nvim_lsp").default_capabilities()
+
+      lspconfig.lua_ls.setup({ capabilities = capabilities })
+      lspconfig.eslint.setup({ capabilities = capabilities })
+      lspconfig.ts_ls.setup({ capabilities = capabilities })
+      lspconfig.gopls.setup({ capabilities = capabilities })
     end,
   },
 }
