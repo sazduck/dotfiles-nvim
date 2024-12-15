@@ -12,7 +12,7 @@ return {
             TabLineSel =   { bg = colors.pink },
           }
         end,
-        -- transparent_background = true,
+        transparent_background = true,
       })
 
       vim.cmd.colorscheme("catppuccin-mocha")
