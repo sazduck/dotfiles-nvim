@@ -3,7 +3,10 @@ return {
   {
     "williamboman/mason.nvim",
     opts = {
-      ui = { border = "rounded", },
+      ui = {
+        border = "rounded",
+        title = "Mason"
+      },
       PATH = "prepend",
     }
   },
