@@ -1,3 +1,10 @@
+local lsps = {
+  "lua_ls",
+  "eslint",
+  "ts_ls",
+  "gopls",
+  "hyprls",
+}
 
 return {
   {
@@ -13,12 +20,7 @@ return {
   {
     "williamboman/mason-lspconfig.nvim",
     opts = {
-      ensure_installed = {
-        "lua_ls",
-        "eslint",
-        "ts_ls",
-        "gopls",
-      },
+      ensure_installed = lsps,
     },
   },
   {
@@ -42,10 +44,26 @@ return {
 
       local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
-      lspconfig.lua_ls.setup({ capabilities = capabilities })
-      lspconfig.eslint.setup({ capabilities = capabilities })
-      lspconfig.ts_ls.setup({ capabilities = capabilities })
-      lspconfig.gopls.setup({ capabilities = capabilities })
+      for _, lsp in pairs(lsps) do
+        lspconfig[lsp].setup({ capabilities = capabilities })
+      end
+
+
+      -- Hyprlang LSP
+      vim.filetype.add({
+        pattern = { [".*/hypr/.*%.conf"] = "hyprlang" },
+      })
+
+      vim.api.nvim_create_autocmd({'BufEnter', 'BufWinEnter'}, {
+          pattern = {".*/hypr/.*%.conf", "hypr*.conf"},
+          callback = function(e)
+              vim.lsp.start {
+                  name = "hyprlang",
+                  cmd = {"hyprls"},
+                  root_dir = vim.fn.getcwd(),
+              }
+          end
+      })
     end,
   },
 }

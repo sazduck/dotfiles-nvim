@@ -18,5 +18,5 @@ if pcall(require, "lspconfig") then
 end
 
 if pcall(require, "null-ls") then
-  set("n", "<leader>cf", vim.lsp.buf.format, {})
+  set({"n", "v"}, "<leader>cf", vim.lsp.buf.format, {})
 end
