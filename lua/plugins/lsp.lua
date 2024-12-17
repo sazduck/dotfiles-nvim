@@ -1,9 +1,10 @@
 local lsps = {
   "lua_ls",
-  "eslint",
   "ts_ls",
+  "eslint",
   "gopls",
   "hyprls",
+  "emmet_language_server",
 }
 
 return {
@@ -48,7 +49,6 @@ return {
         lspconfig[lsp].setup({ capabilities = capabilities })
       end
 
-
       -- Hyprlang LSP
       vim.filetype.add({
         pattern = { [".*/hypr/.*%.conf"] = "hyprlang" },
@@ -56,7 +56,7 @@ return {
 
       vim.api.nvim_create_autocmd({'BufEnter', 'BufWinEnter'}, {
           pattern = {".*/hypr/.*%.conf", "hypr*.conf"},
-          callback = function(e)
+          callback = function()
               vim.lsp.start {
                   name = "hyprlang",
                   cmd = {"hyprls"},
