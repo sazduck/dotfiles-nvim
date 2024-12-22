@@ -15,7 +15,7 @@ return {
     quickfile = { enabled = true },
     scroll = {
       animate = {
-        duration = { step = 6, total = 30 },
+        duration = { step = 7, total = 28},
         fps = 144,
       }
     },
@@ -30,7 +30,7 @@ return {
       }
     },
     animate = {
-      duration = { step = 6, total = 30 },
+      duration = { step = 7, total = 14 },
       fps = 144,
     }
   },

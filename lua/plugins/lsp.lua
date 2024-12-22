@@ -11,12 +11,12 @@ return {
   {
     "williamboman/mason.nvim",
     opts = {
+      PATH = "prepend",
       ui = {
         border = "rounded",
-        title = "Mason"
+        title = "Mason",
       },
-      PATH = "prepend",
-    }
+    },
   },
   {
     "williamboman/mason-lspconfig.nvim",
@@ -45,7 +45,7 @@ return {
 
       local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
-      for _, lsp in pairs(lsps) do
+      for _, lsp in ipairs(lsps) do
         lspconfig[lsp].setup({ capabilities = capabilities })
       end
 
@@ -54,15 +54,15 @@ return {
         pattern = { [".*/hypr/.*%.conf"] = "hyprlang" },
       })
 
-      vim.api.nvim_create_autocmd({'BufEnter', 'BufWinEnter'}, {
-          pattern = {".*/hypr/.*%.conf", "hypr*.conf"},
-          callback = function()
-              vim.lsp.start {
-                  name = "hyprlang",
-                  cmd = {"hyprls"},
-                  root_dir = vim.fn.getcwd(),
-              }
-          end
+      vim.api.nvim_create_autocmd({ "BufEnter", "BufWinEnter" }, {
+        pattern = { ".*/hypr/.*%.conf", "hypr*.conf" },
+        callback = function()
+          vim.lsp.start({
+            name = "hyprlang",
+            cmd = { "hyprls" },
+            root_dir = vim.fn.getcwd(),
+          })
+        end,
       })
     end,
   },
