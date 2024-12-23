@@ -52,8 +52,12 @@ if pcall(require, "gitsigns") then
 
   set('n', '<leader>hs', gs.stage_hunk)
   set('n', '<leader>hr', gs.reset_hunk)
-  set('v', '<leader>hs', function() gs.stage_hunk {vim.fn.line('.'), vim.fn.line('v')} end)
-  set('v', '<leader>hr', function() gs.reset_hunk {vim.fn.line('.'), vim.fn.line('v')} end)
+  set("v", "<leader>hs", function()
+    gs.stage_hunk({ vim.fn.line("."), vim.fn.line("v") })
+  end)
+	set("v", "<leader>hr", function()
+		gs.reset_hunk({ vim.fn.line("."), vim.fn.line("v") })
+	end)
 
   set("n", "<leader>ha", gs.stage_hunk)
   set("n", "<leader>hu", gs.undo_stage_hunk)
