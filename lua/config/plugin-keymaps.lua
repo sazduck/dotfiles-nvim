@@ -20,6 +20,7 @@ if pcall(require, "lspconfig") then
   set("n", "gh", vim.lsp.buf.hover, {})
   set("n", "gd", vim.lsp.buf.definition, {})
   set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, {})
+  set("n", "<leader>r", vim.lsp.buf.rename, {})
 end
 
 if pcall(require, "null-ls") then
