@@ -35,7 +35,7 @@ opt.signcolumn = "yes"  -- show sign column so that text doesn't shift
 opt.mouse = "a"
 
 -- backspace
-opt.backspace = "indent,eol,start" -- allow backspace on indent, end of line or insert mode start position
+-- opt.backspace = "indent,eol,start" -- allow backspace on indent, end of line or insert mode start position
 
 -- split windows
 opt.splitright = true -- split vertical window to the right
