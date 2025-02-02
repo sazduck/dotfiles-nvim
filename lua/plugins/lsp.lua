@@ -5,6 +5,7 @@ local lsps = {
   "gopls",
   "hyprls",
   "emmet_language_server",
+  "clangd",
 }
 
 return {

@@ -20,11 +20,12 @@ local function merge_arrays(...)
 
   return merged
 end
+
 return {
   {
     "jay-babu/mason-null-ls.nvim",
     opts = {
-      ensure_installed = src.formatting,
+      ensure_installed = merge_arrays(src.formatting, src.diagnostics),
     },
   },
   {
@@ -34,9 +35,13 @@ return {
 
       local source = {}
 
-      for buitlin, plugins in pairs(src) do
+      for builtin, plugins in pairs(src) do -- Исправлено: builtin вместо buitlin
         for _, plugin in ipairs(plugins) do
-          table.insert(source, null_ls.builtins[buitlin][plugin])
+          if null_ls.builtins[builtin][plugin] then
+            table.insert(source, null_ls.builtins[builtin][plugin])
+          else
+            vim.notify("Plugin not found in null-ls.builtins: " .. plugin, vim.log.levels.WARN)
+          end
         end
       end
 
