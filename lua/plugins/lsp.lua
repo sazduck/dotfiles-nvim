@@ -6,6 +6,8 @@ local lsps = {
   "hyprls",
   "emmet_language_server",
   "clangd",
+  "phpactor",
+  "bashls",
 }
 
 return {
@@ -15,7 +17,7 @@ return {
       PATH = "prepend",
       ui = {
         border = "rounded",
-        title = "Mason",
+        title = " Mason ",
       },
     },
   },
@@ -50,19 +52,33 @@ return {
         lspconfig[lsp].setup({ capabilities = capabilities })
       end
 
-      -- Hyprlang LSP
       vim.filetype.add({
-        pattern = { [".*/hypr/.*%.conf"] = "hyprlang" },
+        pattern = {
+          [".*/hypr/.*%.conf"] = "hyprlang",
+          [".*/bash/.*"] = "bash",
+        },
       })
 
       vim.api.nvim_create_autocmd({ "BufEnter", "BufWinEnter" }, {
-        pattern = { ".*/hypr/.*%.conf", "hypr*.conf" },
+        pattern = {
+          ".*/hypr/.*%.conf", "hypr*.conf",
+          ".*/bash/.*"
+        },
         callback = function()
-          vim.lsp.start({
-            name = "hyprlang",
-            cmd = { "hyprls" },
-            root_dir = vim.fn.getcwd(),
-          })
+          if vim.bo.filetype == "hyprlang" then
+            vim.lsp.start({
+              name = "hyprlang",
+              cmd = { "hyprls" },
+              root_dir = vim.fn.getcwd(),
+            })
+          elseif vim.bo.filetype == "bash" then
+            vim.lsp.start({
+              name = "bash",
+              cmd = { "bashls" },
+              root_dir = vim.fn.getcwd(),
+            })
+
+          end
         end,
       })
     end,

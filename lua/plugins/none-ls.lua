@@ -3,6 +3,7 @@ local src = {
     "stylua",
     "prettier",
   },
+  diagnostics = {}
 }
 
 local function merge_arrays(...)
@@ -33,12 +34,12 @@ return {
     config = function()
       local null_ls = require("null-ls")
 
-      local source = {}
+      local sources = {}
 
       for builtin, plugins in pairs(src) do -- Исправлено: builtin вместо buitlin
         for _, plugin in ipairs(plugins) do
           if null_ls.builtins[builtin][plugin] then
-            table.insert(source, null_ls.builtins[builtin][plugin])
+            table.insert(sources, null_ls.builtins[builtin][plugin])
           else
             vim.notify("Plugin not found in null-ls.builtins: " .. plugin, vim.log.levels.WARN)
           end
@@ -46,7 +47,7 @@ return {
       end
 
       null_ls.setup({
-        sources = source,
+        sources = sources,
       })
     end,
   },

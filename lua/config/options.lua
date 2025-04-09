@@ -34,9 +34,6 @@ opt.signcolumn = "yes"  -- show sign column so that text doesn't shift
 -- mouse
 opt.mouse = "a"
 
--- backspace
--- opt.backspace = "indent,eol,start" -- allow backspace on indent, end of line or insert mode start position
-
 -- split windows
 opt.splitright = true -- split vertical window to the right
 opt.splitbelow = true -- split horizontal window to the bottom
@@ -46,7 +43,6 @@ opt.spelllang = { "en_us", "ru" } -- Словари рус eng
 opt.spell = true
 
 -- под винду
-
 if vim.fn.has("win32") == 1 or vim.fn.has("win64") == 1 then
   opt.shell = "powershell"
 end
