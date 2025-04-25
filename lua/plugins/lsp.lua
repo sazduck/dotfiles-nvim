@@ -8,6 +8,7 @@ local lsps = {
   "clangd",
   "phpactor",
   "bashls",
+  "astro",
 }
 
 return {
