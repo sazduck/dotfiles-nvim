@@ -9,6 +9,7 @@ local lsps = {
   "phpactor",
   "bashls",
   "astro",
+  "volar",
 }
 
 return {
