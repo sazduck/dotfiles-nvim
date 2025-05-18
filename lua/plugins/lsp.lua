@@ -10,6 +10,7 @@ local lsps = {
   "bashls",
   "astro",
   "volar",
+  "cssls",
 }
 
 return {
@@ -34,19 +35,38 @@ return {
     config = function()
       local lspconfig = require("lspconfig")
 
-      local border = "rounded"
+      local borderStyle = "rounded"
 
-      vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
-        border = border,
-      })
+      -- vim.lsp.buf.hover = function()
+      --   return hover({
+      --     border = borderStyle,
+      --   })
+      -- end
 
-      vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, {
-        border = border,
-      })
+      -- vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
+      --   border = borderStyle,
+      -- })
+
+      --
+      -- vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, {
+      --   border = borderStyle,
+      -- })
 
       vim.diagnostic.config({
-        float = { border = border },
+        virtual_text = true, -- Отображение ошибок в строке кода
+        signs = true,        -- Иконки в линейке слева
+        underline = true,    -- Подчеркивание ошибочных участков
+        update_in_insert = false,
       })
+
+
+      local orig_util_open_floating_preview = vim.lsp.util.open_floating_preview
+      ---@diagnostic disable-next-line: duplicate-set-field
+      function vim.lsp.util.open_floating_preview(contents, syntax, opts, ...)
+        opts = opts or {}
+        opts.border = borderStyle
+        return orig_util_open_floating_preview(contents, syntax, opts, ...)
+      end
 
       local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
