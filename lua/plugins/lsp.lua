@@ -9,8 +9,10 @@ local lsps = {
   "phpactor",
   "bashls",
   "astro",
-  "volar",
   "cssls",
+  "vuels",
+  "tailwindcss",
+  "pyright",
 }
 
 return {
