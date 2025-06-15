@@ -46,3 +46,15 @@ opt.spell = true
 if vim.fn.has("win32") == 1 or vim.fn.has("win64") == 1 then
   opt.shell = "powershell"
 end
+
+opt.list = true
+
+opt.listchars = {
+  tab = "→ ",
+  space = "·", -- Отображать пробелы как "·"
+  nbsp = "␣", -- Отображать неразрывные пробелы
+  extends = "⟩", -- Символ справа экрана при переносе строки
+  precedes = "⟨", -- Символ слева экрана при переносе строки
+}
+
+opt.wrap = false

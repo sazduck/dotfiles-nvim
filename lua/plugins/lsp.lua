@@ -13,11 +13,12 @@ local lsps = {
   "vuels",
   "tailwindcss",
   "pyright",
+  "rust_analyzer",
 }
 
 return {
   {
-    "williamboman/mason.nvim",
+    "mason-org/mason.nvim",
     opts = {
       PATH = "prepend",
       ui = {
@@ -27,40 +28,25 @@ return {
     },
   },
   {
-    "williamboman/mason-lspconfig.nvim",
+    "mason-org/mason-lspconfig.nvim",
     opts = {
       ensure_installed = lsps,
     },
   },
   {
     "neovim/nvim-lspconfig",
+    lazy = false,
     config = function()
       local lspconfig = require("lspconfig")
 
       local borderStyle = "rounded"
 
-      -- vim.lsp.buf.hover = function()
-      --   return hover({
-      --     border = borderStyle,
-      --   })
-      -- end
-
-      -- vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
-      --   border = borderStyle,
-      -- })
-
-      --
-      -- vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, {
-      --   border = borderStyle,
-      -- })
-
       vim.diagnostic.config({
-        virtual_text = true, -- Отображение ошибок в строке кода
-        signs = true,        -- Иконки в линейке слева
-        underline = true,    -- Подчеркивание ошибочных участков
+        virtual_text = true,
+        signs = true,
+        underline = true,
         update_in_insert = false,
       })
-
 
       local orig_util_open_floating_preview = vim.lsp.util.open_floating_preview
       ---@diagnostic disable-next-line: duplicate-set-field
@@ -85,8 +71,9 @@ return {
 
       vim.api.nvim_create_autocmd({ "BufEnter", "BufWinEnter" }, {
         pattern = {
-          ".*/hypr/.*%.conf", "hypr*.conf",
-          ".*/bash/.*"
+          ".*/hypr/.*%.conf",
+          "hypr*.conf",
+          ".*/bash/.*",
         },
         callback = function()
           if vim.bo.filetype == "hyprlang" then
@@ -101,10 +88,15 @@ return {
               cmd = { "bashls" },
               root_dir = vim.fn.getcwd(),
             })
-
           end
         end,
       })
     end,
+    keys = {
+      { "gh",         vim.lsp.buf.hover,       desc = "Hover" },
+      { "gd",         vim.lsp.buf.definition,  desc = "Go to definition" },
+      { "<leader>ca", vim.lsp.buf.code_action, desc = "Code actions",    mode = { "n", "v" } },
+      { "<leader>r",  vim.lsp.buf.rename,      desc = "Rename variable" },
+    },
   },
 }

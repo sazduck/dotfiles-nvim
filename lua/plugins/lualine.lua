@@ -2,15 +2,15 @@ return {
   "nvim-lualine/lualine.nvim",
   opts = {
     options = {
-      theme = "catppuccin"
+      theme = "catppuccin",
     },
     sections = {
       lualine_c = {
         {
-          'filename',
-          path = 4
-        }
+          "filename",
+          path = 4,
+        },
       },
-    }
+    },
   },
 }

@@ -3,6 +3,7 @@ return {
     "hrsh7th/nvim-cmp",
     dependencies = {
       "hrsh7th/cmp-nvim-lsp",
+      "hrsh7th/cmp-path",
       "L3MON4D3/LuaSnip",
       "saadparwaiz1/cmp_luasnip",
       "rafamadriz/friendly-snippets",
@@ -36,35 +37,35 @@ return {
           ["<C-n>"] = cmp.mapping.select_next_item(),
           ["<C-p>"] = cmp.mapping.select_prev_item(),
 
-          ['<Tab>'] = cmp.mapping(function(fallback)
+          ["<Tab>"] = cmp.mapping(function(fallback)
             if luasnip.expand_or_jumpable() then
               luasnip.expand_or_jump()
             else
               fallback()
             end
-          end, { 'i', 's' }),
+          end, { "i", "s" }),
 
-          ['<S-Tab>'] = cmp.mapping(function(fallback)
+          ["<S-Tab>"] = cmp.mapping(function(fallback)
             if luasnip.jumpable(-1) then
               luasnip.jump(-1)
             else
               fallback()
             end
-          end, { 'i', 's' }),
-
+          end, { "i", "s" }),
         },
 
         sources = cmp.config.sources({
           { name = "nvim_lsp" },
           { name = "luasnip" },
-        }, {
+
+          { name = "path" },
           { name = "buffer" },
+          { name = "cmdline" },
         }),
 
         experimental = {
           ghost_text = true,
         },
-
       })
     end,
   },
