@@ -5,6 +5,7 @@ return {
       "nvim-lua/plenary.nvim",
       "nvim-telescope/telescope-ui-select.nvim",
     },
+    lazy = false,
     config = function ()
       local telescope = require("telescope")
       telescope.setup({

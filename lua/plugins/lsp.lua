@@ -69,33 +69,12 @@ return {
         },
       })
 
-      vim.api.nvim_create_autocmd({ "BufEnter", "BufWinEnter" }, {
-        pattern = {
-          ".*/hypr/.*%.conf",
-          "hypr*.conf",
-          ".*/bash/.*",
-        },
-        callback = function()
-          if vim.bo.filetype == "hyprlang" then
-            vim.lsp.start({
-              name = "hyprlang",
-              cmd = { "hyprls" },
-              root_dir = vim.fn.getcwd(),
-            })
-          elseif vim.bo.filetype == "bash" then
-            vim.lsp.start({
-              name = "bash",
-              cmd = { "bashls" },
-              root_dir = vim.fn.getcwd(),
-            })
-          end
-        end,
-      })
     end,
     keys = {
       { "gh",         vim.lsp.buf.hover,       desc = "Hover" },
       { "gd",         vim.lsp.buf.definition,  desc = "Go to definition" },
       { "<leader>ca", vim.lsp.buf.code_action, desc = "Code actions",    mode = { "n", "v" } },
+      { "<C-.>", vim.lsp.buf.code_action, desc = "Code actions",    mode = { "n", "v" } },
       { "<leader>r",  vim.lsp.buf.rename,      desc = "Rename variable" },
     },
   },
