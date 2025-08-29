@@ -31,13 +31,19 @@ return {
     "mason-org/mason-lspconfig.nvim",
     opts = {
       ensure_installed = lsps,
+      handlers = {
+        function(server_name)
+          require("lspconfig")[server_name].setup({
+            capabilities = require("cmp_nvim_lsp").default_capabilities(),
+          })
+        end,
+      },
     },
   },
   {
     "neovim/nvim-lspconfig",
     lazy = false,
     config = function()
-      local lspconfig = require("lspconfig")
 
       local borderStyle = "rounded"
 
@@ -54,12 +60,6 @@ return {
         opts = opts or {}
         opts.border = borderStyle
         return orig_util_open_floating_preview(contents, syntax, opts, ...)
-      end
-
-      local capabilities = require("cmp_nvim_lsp").default_capabilities()
-
-      for _, lsp in ipairs(lsps) do
-        lspconfig[lsp].setup({ capabilities = capabilities })
       end
 
       vim.filetype.add({
