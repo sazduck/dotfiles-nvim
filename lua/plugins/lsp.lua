@@ -3,6 +3,7 @@ local lsps = {
   "ts_ls",
   "eslint",
   "gopls",
+  "templ",
   "hyprls",
   "emmet_language_server",
   "clangd",
