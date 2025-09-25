@@ -18,8 +18,8 @@ return {
       require("telescope").load_extension("ui-select")
     end,
     keys = {
-      { "<leader>ff", "<cmd>Telescope find_files<CR>", desc = "Telescope find files" },
-      { "<leader>fg", "<cmd>Telescope live_grep<CR>",  desc = "Telescope live grep" },
+      { "<C-e>",      "<cmd>Telescope find_files<CR>", desc = "Telescope find files" },
+      { "<leader>ff", "<cmd>Telescope live_grep<CR>",  desc = "Telescope live grep" },
       { "<leader>fb", "<cmd>Telescope buffers<CR>",    desc = "Telescope buffers" },
       { "<leader>fh", "<cmd>Telescope help_tags<CR>",  desc = "Telescope help tags" },
     },

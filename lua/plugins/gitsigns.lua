@@ -61,7 +61,7 @@ return {
       { "<leader>hu", gs.undo_stage_hunk, desc = "undo stage hunk" },
 
       { "<leader>hS", gs.stage_buffer,    desc = "stage buffer" },
-      { "<leader>hr", gs.reset_buffer,    desc = "reset buffer" },
+      { "<leader>hR", gs.reset_buffer,    desc = "reset buffer" },
 
       { "<leader>hp", gs.preview_hunk,    desc = "preview hunk" },
 

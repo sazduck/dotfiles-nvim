@@ -75,7 +75,6 @@ return {
       { "gh",         vim.lsp.buf.hover,       desc = "Hover" },
       { "gd",         vim.lsp.buf.definition,  desc = "Go to definition" },
       { "<leader>ca", vim.lsp.buf.code_action, desc = "Code actions",    mode = { "n", "v" } },
-      { "<C-.>", vim.lsp.buf.code_action, desc = "Code actions",    mode = { "n", "v" } },
       { "<leader>r",  vim.lsp.buf.rename,      desc = "Rename variable" },
     },
   },
