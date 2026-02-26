@@ -1,20 +1,9 @@
 local lsps = {
-  "lua_ls",
-  "ts_ls",
-  "eslint",
-  "gopls",
-  "templ",
-  "hyprls",
-  "emmet_language_server",
-  "clangd",
-  "phpactor",
-  "bashls",
-  "astro",
-  "cssls",
-  "vuels",
-  "tailwindcss",
-  "pyright",
-  "rust_analyzer",
+  "clangd", "gopls", "templ", "rust_analyzer", "pyright", "lua_ls", "hyprls", "phpactor", "bashls",
+
+  "ts_ls", "eslint", "emmet_language_server",
+  "svelte", "vue_ls", "astro",
+  "cssls", "tailwindcss",
 }
 
 return {
@@ -23,7 +12,7 @@ return {
     opts = {
       PATH = "prepend",
       ui = {
-        border = "rounded",
+        -- border = "rounded",
         title = " Mason ",
       },
     },
@@ -46,7 +35,6 @@ return {
     lazy = false,
     config = function()
 
-      local borderStyle = "rounded"
 
       vim.diagnostic.config({
         virtual_text = true,
@@ -55,14 +43,6 @@ return {
         update_in_insert = false,
       })
 
-      local orig_util_open_floating_preview = vim.lsp.util.open_floating_preview
-      ---@diagnostic disable-next-line: duplicate-set-field
-      function vim.lsp.util.open_floating_preview(contents, syntax, opts, ...)
-        opts = opts or {}
-        opts.border = borderStyle
-        return orig_util_open_floating_preview(contents, syntax, opts, ...)
-      end
-
       vim.filetype.add({
         pattern = {
           [".*/hypr/.*%.conf"] = "hyprlang",
@@ -70,9 +50,13 @@ return {
         },
       })
 
+      vim.lsp.enable(lsps)
+      vim.lsp.completion.enable = true
+
     end,
     keys = {
       { "gh",         vim.lsp.buf.hover,       desc = "Hover" },
+      { 'K',          vim.lsp.buf.hover,       desc = "Hover" },
       { "gd",         vim.lsp.buf.definition,  desc = "Go to definition" },
       { "<leader>ca", vim.lsp.buf.code_action, desc = "Code actions",    mode = { "n", "v" } },
       { "<leader>r",  vim.lsp.buf.rename,      desc = "Rename variable" },

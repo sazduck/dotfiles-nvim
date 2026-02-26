@@ -39,7 +39,7 @@ opt.splitright = true -- split vertical window to the right
 opt.splitbelow = true -- split horizontal window to the bottom
 
 -- spelling
-opt.spelllang = { "en_us", "ru" } -- Словари рус eng
+-- opt.spelllang = { "en_us", "ru" } -- Словари рус eng
 opt.spell = true
 
 -- под винду
@@ -51,10 +51,11 @@ opt.list = true
 
 opt.listchars = {
   tab = "→ ",
-  space = "·", -- Отображать пробелы как "·"
-  nbsp = "␣", -- Отображать неразрывные пробелы
-  extends = "⟩", -- Символ справа экрана при переносе строки
-  precedes = "⟨", -- Символ слева экрана при переносе строки
+  space = "·",      -- Отображать пробелы как "·"
+  nbsp = "␣",       -- Отображать неразрывные пробелы
+  extends = "⟩",    -- Символ справа экрана при переносе строки
+  precedes = "⟨",   -- Символ слева экрана при переносе строки
 }
+opt.breakindent = true
 
-opt.wrap = false
+opt.wrap = true

@@ -12,7 +12,7 @@ return {
           MsgSeparator = { bg = colors.mantle },
         }
       end,
-      transparent_background = true,
+      -- transparent_background = true,
       init = function()
         vim.cmd.colorscheme("catppuccin-mocha")
       end,
