@@ -65,7 +65,7 @@ return {
             statuscolumn = " ",
             conceallevel = 3,
           },
-          border = "rounded",
+          -- border = "rounded",
         })
       end,
       desc = "Neovim News",

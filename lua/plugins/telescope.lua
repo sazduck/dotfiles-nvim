@@ -7,8 +7,7 @@ return {
     },
     lazy = false,
     config = function ()
-      local telescope = require("telescope")
-      telescope.setup({
+      require("telescope").setup({
         extensions = {
           ["ui-select"] = {
             require("telescope.themes").get_dropdown({})
